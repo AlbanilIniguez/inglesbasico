@@ -16,10 +16,10 @@ header {
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   gap: 1rem;
   padding: 1rem;
-  max-width: 1000px;
+  max-width: 1200px;
   margin: auto;
+  box-sizing: border-box;
 }
-
 
 .card {
   display: flex;
@@ -31,9 +31,8 @@ header {
   font-size: 1.1rem;
   color: white;
   height: 120px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease;
   text-align: center;
+  transition: transform 0.2s;
   word-break: break-word;
 }
 
@@ -47,8 +46,7 @@ header {
 }
 
 .pronunciation {
-  font-size: 0.9rem;
-  margin-top: 0.4rem;
+  font-size: 1rem;
 }
 
 /* Colores por letra del abecedario */
@@ -79,24 +77,16 @@ header {
 .color-y  { background: #ff9800; }
 .color-z  { background: #f44336; }
 
-/* Responsive */
-@media (max-width: 600px) {
-  .alphabet-main {
-    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-    gap: 0.8rem;
-  }
-
+/* Responsive ajustes finos */
+@media (max-width: 768px) {
   .card {
     height: 100px;
-    padding: 0.8rem;
     font-size: 1rem;
   }
-
   .letters {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
   }
-
   .pronunciation {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
   }
 }
