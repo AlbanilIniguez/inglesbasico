@@ -1,0 +1,87 @@
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: #fafafa;
+}
+
+header {
+  background-color: #1e88e5;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+}
+
+.alphabet-main {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  color: white;
+  height: 100px;
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.letters {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.pronunciation {
+  font-size: 0.9rem;
+}
+
+/* Colores por letra del abecedario */
+.color-a  { background: #c82a54; }  /* rojo rosado */
+.color-b  { background: #ef280f; }  /* rojo brillante */
+.color-c  { background: #e36b2c; }  /* naranja calabaza */
+.color-d  { background: #6dc36d; }  /* verde pasto */
+.color-e  { background: #f36f6f; }  /* rosado coral */
+.color-f  { background: #109dfa; }  /* azul cielo */
+.color-g  { background: #300105; }  /* marrón oscuro */
+.color-h  { background: #8e24aa; }  /* morado intenso */
+.color-i  { background: #024a86; }  /* azul marino */
+.color-j  { background: #ffa500; }  /* naranja fuerte */
+.color-k  { background: #4caf50; }  /* verde natural */
+.color-l  { background: #ff69b4; }  /* rosa vibrante */
+.color-m  { background: #9c27b0; }  /* púrpura */
+.color-n  { background: #3f51b5; }  /* azul índigo */
+.color-o  { background: #00bcd4; }  /* cian */
+.color-p  { background: #009688; }  /* verde azulado */
+.color-q  { background: #ff5722; }  /* naranja oscuro */
+.color-r  { background: #795548; }  /* café */
+.color-s  { background: #607d8b; }  /* gris azulado */
+.color-t  { background: #8bc34a; }  /* verde lima */
+.color-u  { background: #e91e63; }  /* rosa intenso */
+.color-v  { background: #673ab7; }  /* púrpura oscuro */
+.color-w  { background: #2196f3; }  /* azul clásico */
+.color-x  { background: #ffc107; }  /* amarillo fuerte */
+.color-y  { background: #ff9800; }  /* naranja medio */
+.color-z  { background: #f44336; }  /* rojo */
+
+
+/* Responsive */
+@media (max-width: 600px) {
+  .card {
+    height: 80px;
+    font-size: 1rem;
+  }
+  .letters {
+    font-size: 1.3rem;
+  }
+}

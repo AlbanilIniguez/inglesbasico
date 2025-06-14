@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Plataforma Educativa Inglés</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <nav class="sidebar" id="sidebar" style="transform: translateX(-100%); transition: transform 0.3s ease;">
+    <div class="sidebar-header">
+      <h2>Temas</h2>
+      <button id="close-sidebar" aria-label="Cerrar menú lateral">×</button>
+    </div>
+    <nav>
+      <button onclick="loadContent('topics/alphabet.html', 'topics/styles_alphabet.css', 'topics/alphabet.js')">
+  1. Alphabet and Personal Info
+</button>
+
+      <!-- Agrega más botones para otros temas aquí -->
+    </nav>
+  </nav>
+
+  <header class="topbar">
+    <button id="open-sidebar" aria-label="Abrir menú lateral">☰</button>
+    <h1 id="topic-title">Plataforma Educativa Inglés</h1>
+  </header>
+
+  <main class="content" id="main-content">
+    <section id="topic-content">
+      <p>Selecciona un tema del menú lateral para comenzar.</p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2025 Plataforma Educativa de Inglés | Todos los Derechos Reservados</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
