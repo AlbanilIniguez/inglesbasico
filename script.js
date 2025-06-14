@@ -128,8 +128,7 @@ const topics = [
   { title: "Go + Gerundio" },
   { title: "Verbs and Vocabulary" }
 ];
-*/
-const mainContent = document.getElementById('topic-content');
+*/const mainContent = document.getElementById('topic-content');
 const topicTitle = document.getElementById('topic-title');
 const sidebar = document.getElementById('sidebar');
 const openSidebarBtn = document.getElementById('open-sidebar');
@@ -146,32 +145,40 @@ closeSidebarBtn.addEventListener('click', () => {
   body.classList.remove('sidebar-visible');
 });
 
+// Manejo de botones para cargar temas sin usar onclick inline
+document.querySelectorAll('nav[role="navigation"] button').forEach(button => {
+  button.addEventListener('click', () => {
+    const htmlFile = button.getAttribute('data-html');
+    const cssFile = button.getAttribute('data-css');
+    const jsFile = button.getAttribute('data-js');
+    loadContent(htmlFile, cssFile, jsFile);
+  });
+});
+
 async function loadContent(htmlFile, cssFile, jsFile) {
   try {
-    // 1. Cargar contenido HTML
+    // 1. Cargar HTML
     const response = await fetch(htmlFile);
     if (!response.ok) throw new Error('Error al cargar el contenido HTML');
     let htmlText = await response.text();
-
-    // 2. Extraer contenido dentro del <body> para evitar etiquetas duplicadas
     htmlText = extractBodyContent(htmlText);
 
-    // 3. Insertar contenido en el main
+    // 2. Insertar contenido
     mainContent.innerHTML = htmlText;
 
-    // 4. Actualizar título (primer <h1> dentro del contenido)
+    // 3. Extraer y mostrar título
     const tempDiv = document.createElement('div');
     tempDiv.innerHTML = htmlText;
     const h1 = tempDiv.querySelector('h1');
     topicTitle.textContent = h1 ? h1.textContent : 'Tema';
 
-    // 5. Cargar CSS personalizado
+    // 4. Cargar CSS
     loadCSS(cssFile);
 
-    // 6. Cargar JS personalizado (esperamos que se cargue y ejecute)
+    // 5. Cargar y ejecutar JS (esperar a que cargue)
     await loadJS(jsFile);
 
-    // 7. Cerrar sidebar automáticamente al seleccionar tema
+    // 6. Cerrar sidebar
     sidebar.style.transform = 'translateX(-100%)';
     body.classList.remove('sidebar-visible');
   } catch (error) {
@@ -189,6 +196,7 @@ function extractBodyContent(html) {
 }
 
 function loadCSS(cssFile) {
+  // Elimina el CSS anterior si existe
   const oldLink = document.getElementById('dynamic-theme-css');
   if (oldLink) oldLink.remove();
 
@@ -196,27 +204,29 @@ function loadCSS(cssFile) {
 
   const link = document.createElement('link');
   link.rel = 'stylesheet';
-  link.href = cssFile;
+  link.href = cssFile + '?t=' + new Date().getTime(); // Cache bust
   link.id = 'dynamic-theme-css';
   document.head.appendChild(link);
 }
 
 function loadJS(jsFile) {
   return new Promise((resolve, reject) => {
+    // Elimina el script anterior si existe
     const oldScript = document.getElementById('dynamic-theme-js');
-    if (oldScript) oldScript.remove();
+    if (oldScript) {
+      oldScript.remove();
+    }
 
     if (!jsFile) {
-      resolve(); // No hay JS que cargar, resolvemos
+      resolve();
       return;
     }
 
     const script = document.createElement('script');
-    script.src = jsFile;
+    script.src = jsFile + '?t=' + new Date().getTime(); // Cache bust
     script.id = 'dynamic-theme-js';
     script.defer = true;
 
-    // Resolver la promesa cuando el script cargue o rechazar si hay error
     script.onload = () => resolve();
     script.onerror = () => reject(new Error(`Error al cargar el script ${jsFile}`));
 
